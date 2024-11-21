@@ -23,8 +23,8 @@ def ej5(texto):
 
     res = palabras[0]
     for it in palabras:
-        if len(res) < len(palabras[it]):
-            res = palabras[it]
+        if len(res) < len(it):
+            res = it
 
     return res
 
@@ -36,8 +36,8 @@ def ej6(texto):
 
     masCorta = palabras[0]
     for it in palabras:
-        if len(masCorta) > len(palabras[it]):
-            masCorta = palabras[it]
+        if len(masCorta) > len(it):
+            masCorta = it
 
     return [masLarga, masCorta]
 
@@ -52,7 +52,7 @@ def ej8(texto, subcadena):
 
     lista = []
 
-    for it in range(0, len(palabras) + 1):
+    for it in range(0, len(palabras)):
         total = 0
 
         for it2 in palabras[:it + 1]:
@@ -61,7 +61,7 @@ def ej8(texto, subcadena):
         inicio = total
         final = total + len(palabras[it])
 
-        lista.add([inicio, final])
+        lista.append([inicio, final])
 
     return [len(palabras), lista]
 
@@ -73,8 +73,17 @@ def ej9(texto, subcadena):
 def ej10(num):
     res = ""
     for it in range(1, 10 + 1):
-        res += f"{num} + {it} = {num * it}\n"
+        res += f"{num} * {it} = {num * it}\n"
 
     return res
 
-ej1()
+print(ej1("hola buenos dias", 'a'))
+print(ej2("reconocer"))
+print(ej3("asekljxnfskldfa"))
+print(ej4("reconoce"))
+print(ej5("El pan, del latín panis, es un alimento básico de la dieta humana que se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que se fermente la masa y sea más esponjosa y tierna."))
+print(ej6("El pan, del latín panis, es un alimento básico de la dieta humana que se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que se fermente la masa y sea más esponjosa y tierna."))
+print(ej7("El pan, del latín panis, es un alimento básico de la dieta humana que se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que se fermente la masa y sea más esponjosa y tierna.", "pan"))
+print(ej8("El pan, del latín panis, es un alimento básico de la dieta humana que se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que se fermente la masa y sea más esponjosa y tierna.", "pan"))
+print(ej9("El pan, del latín panis, es un alimento básico de la dieta humana que se suele preparar mediante el horneado de una masa, elaborada fundamentalmente con harina de cereal, agua y sal. La mezcla, en la mayoría de las ocasiones, suele contener levaduras para que se fermente la masa y sea más esponjosa y tierna.", "pan"))
+print(ej10(11))
