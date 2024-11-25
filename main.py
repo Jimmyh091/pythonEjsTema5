@@ -1,4 +1,5 @@
 
+import random
 def ej1(linea, char):
     return len([x for x in linea if x == char])
 
@@ -89,3 +90,56 @@ print("\nEjercicio 7: ", ej7("assssasssasasass", "a"))
 print("Ejercicio 8: ", ej8("assssasssasasass", "a"))
 print("Ejercicio 9: ", ej9("ssassassassass", "a"))
 print(ej10(11))
+
+def ejPipo():
+    while(true):
+
+        println("Bienvenido al pipo este")
+
+        res = int(input("Que quieres hacer?:"
+              "\n\t1. Aprender las tablas."
+              "\n\t2. Aprender las tablas."
+              "\n\t3. Escapar."))
+
+        if res == 1:
+            aprenderTablas()
+        elif res == 2:
+            practicarTablas()
+        elif res == 3:
+            break
+        else:
+            print("Opcion no disponible.")
+
+def aprenderTablas():
+    res = int(input("Que tablas quieres aprender"))
+
+    for it in range(1,10):
+        println(f"{res} x {it} = {res * it}")
+
+    println("\n")
+
+def practicarTablas():
+
+    res = str(input("Que tablas quiieres practicar? (separa los numeros con \'-\')"))
+
+    tablas = res.split("-")
+
+    numIntentos = int(input("Cuantos intentos quieres tener?"))
+
+    aciertos = 0
+    fallos = 0
+
+    for it in numIntentos:
+        tabla = random.choice(tablas)
+        multiplicador = random.randint(0,10)
+
+        intento = int(input(f"Cuanto es {tabla} x {multiplicador}?"))
+
+        if intento == tabla * multiplicador:
+            println("Correcto!")
+            aciertos += 1
+        else:
+            println(f"Mal. {tabla} x {multiplicador} es {tabla * multiplicador}, no {intento}")
+            fallos += 1
+
+    print(f"Has tenido {aciertos} aciertos y {fallos} fallos. Eso te da una tasa de acierto del {(numIntentos * aciertos) / fallos}%")
