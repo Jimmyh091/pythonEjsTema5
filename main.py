@@ -216,4 +216,5 @@ def ahorcado():
 
     print(f"\n\n{"Has ganado!!!" if victoria else "Perdiste"}")
 
+ejPipo()
 ahorcado()
