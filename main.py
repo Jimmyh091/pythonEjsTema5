@@ -5,7 +5,6 @@ def ej1(linea, char):
 
 def ej2(linea):
     return linea == linea[::-1]
-
 def ej3(linea):
 
     return [
@@ -80,6 +79,7 @@ def ej10(num):
 
     return res
 
+"""
 print(ej1("hola buenos dias", 'a'))
 print(ej2("reconocer"))
 print(ej3("asekljxnfskldfa"))
@@ -90,56 +90,130 @@ print("\nEjercicio 7: ", ej7("assssasssasasass", "a"))
 print("Ejercicio 8: ", ej8("assssasssasasass", "a"))
 print("Ejercicio 9: ", ej9("ssassassassass", "a"))
 print(ej10(11))
+"""
 
 def ejPipo():
-    while(true):
+    while(True):
 
-        println("Bienvenido al pipo este")
+        print("Bienvenido al pipo este\n")
 
         res = int(input("Que quieres hacer?:"
               "\n\t1. Aprender las tablas."
-              "\n\t2. Aprender las tablas."
-              "\n\t3. Escapar."))
+              "\n\t2. Practicar las tablas."
+              "\n\t3. Escapar.\n > "))
 
         if res == 1:
             aprenderTablas()
         elif res == 2:
             practicarTablas()
         elif res == 3:
+            print("Espero que te lo hayas pasado bien!!!!!!!!!!")
             break
         else:
             print("Opcion no disponible.")
 
 def aprenderTablas():
-    res = int(input("Que tablas quieres aprender"))
+    res = int(input("Que tablas quieres aprender?\n > "))
 
     for it in range(1,10):
-        println(f"{res} x {it} = {res * it}")
+        print(f"{res} x {it} = {(res * it)}")
 
-    println("\n")
+    print("\n")
 
 def practicarTablas():
 
-    res = str(input("Que tablas quiieres practicar? (separa los numeros con \'-\')"))
+    res = input("Que tablas quiieres practicar? (separa los numeros con \'-\')\n > ")
 
     tablas = res.split("-")
 
-    numIntentos = int(input("Cuantos intentos quieres tener?"))
+    numIntentos = int(input("Cuantos intentos quieres tener?\n > "))
 
     aciertos = 0
     fallos = 0
 
-    for it in numIntentos:
-        tabla = random.choice(tablas)
+    for it in range(0, numIntentos):
+        tabla = int(random.choice(tablas))
         multiplicador = random.randint(0,10)
 
         intento = int(input(f"Cuanto es {tabla} x {multiplicador}?"))
 
-        if intento == tabla * multiplicador:
-            println("Correcto!")
+        solucion = int(tabla * multiplicador)
+
+        if intento == solucion:
+            print("Correcto!\n")
             aciertos += 1
         else:
-            println(f"Mal. {tabla} x {multiplicador} es {tabla * multiplicador}, no {intento}")
+            print(f"Mal. {tabla} x {multiplicador} es {solucion}, no {intento}\n")
             fallos += 1
 
-    print(f"Has tenido {aciertos} aciertos y {fallos} fallos. Eso te da una tasa de acierto del {(numIntentos * aciertos) / fallos}%")
+    print(f"Has tenido {aciertos} aciertos y {fallos} fallos. Eso te da una tasa de acierto del {numIntentos * 100 / aciertos}%\n")
+
+def ahorcado():
+
+    print("Bienvenido al ahorcado")
+
+    dificultad = int(input("Introduce la dificultad:"
+                    "\n\t1. Bebe."
+                    "\n\t2. Menos bebe."
+                    "\n\t3. Muy poco bebe.\n > "))
+
+    vidas = 3
+
+    solucion : str
+
+    if dificultad == 1:
+        solucion = "mesa"
+    elif dificultad == 2:
+        solucion = "computacion"
+    elif dificultad == 3:
+        solucion = "esternocleidomastoideo"
+
+    letrasAcertadas = []
+
+    for it in solucion:
+        letrasAcertadas.append(False)
+
+    victoria = True
+
+    while vidas > 0:
+
+        victoria = True
+
+        for it in range(0, len(solucion)):
+            if letrasAcertadas[it]:
+                print(" " + solucion[it])
+            else:
+                print(" _")
+
+        print("\n")
+
+        res = input("Elige una letra\n > ")
+
+        letraIncluida = False
+        for it in solucion:
+            if res.lower() == it:
+                letraIncluida = True
+
+        if letraIncluida:
+            print("Correcto!")
+
+            for it in range(0, len(solucion)):
+                if solucion[it] == res:
+                    letrasAcertadas[it] = True
+
+        else:
+            vidas -= 1
+            print(f"Incorrecto. Te quedan {vidas} vidas.")
+
+        for it in letrasAcertadas:
+            if not it:
+                victoria = False
+                break
+
+        if victoria:
+            break
+
+
+    print(f"\n\n{"Has ganado!!!" if victoria else "Perdiste"}")
+
+ahorcado()
