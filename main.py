@@ -1,10 +1,86 @@
+def aprenderTablas():
+    res = int(input("Que tablas quieres aprender?\n > "))
+
+    for it in range(1,10):
+        print(f"{res} x {it} = {(res * it)}")
+
+    print("\n")
+
+def ahorcado():
+
+    print("Bienvenido al ahorcado")
+
+    dificultad = int(input("Introduce la dificultad:"
+                    "\n\t1. Bebe."
+                    "\n\t2. Menos bebe."
+                    "\n\t3. Muy poco bebe.\n > "))
+
+    vidas = 3
+
+    solucion : str
+
+    if dificultad == 1:
+        solucion = "mesa"
+    elif dificultad == 2:
+        solucion = "computacion"
+    elif dificultad == 3:
+        solucion = "esternocleidomastoideo"
+
+    letrasAcertadas = []
+
+    for it in solucion:
+        letrasAcertadas.append(False)
+
+    victoria = True
+
+    while vidas > 0:
+
+        victoria = True
+
+        for it in range(0, len(solucion)):
+            if letrasAcertadas[it]:
+                print(" " + solucion[it], end="")
+            else:
+                print(" _", end="")
+
+        print("\n")
+
+        res = input("Elige una letra\n > ")
+
+        letraIncluida = False
+        for it in solucion:
+            if res.lower() == it:
+                letraIncluida = True
+
+        if letraIncluida:
+            print("Correcto!")
+
+            for it in range(0, len(solucion)):
+                if solucion[it] == res:
+                    letrasAcertadas[it] = True
+
+        else:
+            vidas -= 1
+            print(f"Incorrecto. Te quedan {vidas} vidas.")
+
+        for it in letrasAcertadas:
+            if not it:
+                victoria = False
+                break
+
+        if victoria:
+            break
+
+
+    print(f"\n\n{"Has ganado!!!" if victoria else "Perdiste"}")
 
 import random
+
 def ej1(linea, char):
     return len([x for x in linea if x == char])
-
 def ej2(linea):
     return linea == linea[::-1]
+
 def ej3(linea):
 
     return [
@@ -40,8 +116,8 @@ def ej6(texto):
             masCorta = it
 
     return [masLarga, masCorta]
-
 ## hemos hecho varias veces este ejercicio con manu y tengo la formula grabada a fuego
+
 def ej7(texto, subcadena):
     palabras = texto.split(subcadena)
     return len(palabras)
@@ -112,14 +188,6 @@ def ejPipo():
         else:
             print("Opcion no disponible.")
 
-def aprenderTablas():
-    res = int(input("Que tablas quieres aprender?\n > "))
-
-    for it in range(1,10):
-        print(f"{res} x {it} = {(res * it)}")
-
-    print("\n")
-
 def practicarTablas():
 
     res = input("Que tablas quiieres practicar? (separa los numeros con \'-\')\n > ")
@@ -147,74 +215,6 @@ def practicarTablas():
             fallos += 1
 
     print(f"Has tenido {aciertos} aciertos y {fallos} fallos. Eso te da una tasa de acierto del {numIntentos * 100 / aciertos}%\n")
-
-def ahorcado():
-
-    print("Bienvenido al ahorcado")
-
-    dificultad = int(input("Introduce la dificultad:"
-                    "\n\t1. Bebe."
-                    "\n\t2. Menos bebe."
-                    "\n\t3. Muy poco bebe.\n > "))
-
-    vidas = 3
-
-    solucion : str
-
-    if dificultad == 1:
-        solucion = "mesa"
-    elif dificultad == 2:
-        solucion = "computacion"
-    elif dificultad == 3:
-        solucion = "esternocleidomastoideo"
-
-    letrasAcertadas = []
-
-    for it in solucion:
-        letrasAcertadas.append(False)
-
-    victoria = True
-
-    while vidas > 0:
-
-        victoria = True
-
-        for it in range(0, len(solucion)):
-            if letrasAcertadas[it]:
-                print(" " + solucion[it])
-            else:
-                print(" _")
-
-        print("\n")
-
-        res = input("Elige una letra\n > ")
-
-        letraIncluida = False
-        for it in solucion:
-            if res.lower() == it:
-                letraIncluida = True
-
-        if letraIncluida:
-            print("Correcto!")
-
-            for it in range(0, len(solucion)):
-                if solucion[it] == res:
-                    letrasAcertadas[it] = True
-
-        else:
-            vidas -= 1
-            print(f"Incorrecto. Te quedan {vidas} vidas.")
-
-        for it in letrasAcertadas:
-            if not it:
-                victoria = False
-                break
-
-        if victoria:
-            break
-
-
-    print(f"\n\n{"Has ganado!!!" if victoria else "Perdiste"}")
 
 ejPipo()
 ahorcado()
